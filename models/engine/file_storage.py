@@ -25,9 +25,9 @@ class FileStorage:
 
     def save(self):
         """serializes"""
-        copy = self.__objects.copy()
-        for key, value in copy.items():
-            copy[key] = value.to_dict()
+        copy = {}
+        for key, value in self.__objects.items():
+            copy.update([(key, value.to_dict())])
         with open(self.__file_path, "w+") as fil:
             json.dump(copy, fil)
 
@@ -35,5 +35,6 @@ class FileStorage:
         """ deserializes the JSON file"""
         if os.path.exists(FileStorage.__file_path):
             with open(self.__file_path, "r") as fil:
-                self.__objects = json.load(fil)
-            #self.__objects = {**self.__objects, **copy}
+                copy = json.load(fil)
+            for key, value in copy.items():
+                self.__objects[key] = BaseModel(**value)
