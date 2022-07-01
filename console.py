@@ -68,6 +68,10 @@ class HBNBCommand(cmd.Cmd):
             except Exception:
                 print("** no instance found **")
 
+    def do_destroy(self, args):
+        tokens = args.split()
+
+
 
 
 
