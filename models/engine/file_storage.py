@@ -43,3 +43,7 @@ class FileStorage:
     def class_list():
         """list of all classes"""
         return ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]
+
+    def delete(self, key):
+        """deletes an instance"""
+        FileStorage.__objects.pop(key)

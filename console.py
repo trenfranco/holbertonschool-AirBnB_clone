@@ -86,9 +86,29 @@ class HBNBCommand(cmd.Cmd):
             k = tokens[0] + "." + tokens[1]
             dic = storage.all()
             try:
-                storage.delete(key)
+                storage.delete(k)
             except Exception:
                 print("** no instance found **")
+
+    def do_all(self, arg):
+        """ Prints all string representation of all instances"""
+        tokens = arg.split()
+        if len(tokens) == 0:
+            l = list()
+            for k, v in storage.all().items():
+                l.append(str(v))
+            print(l)
+        else:
+            if tokens[0] not in storage.class_list():
+                print("** class doesn't exist **")
+            else:
+                l = list()
+                for k, v in storage.all().items():
+                    if v.__class__.__name__ == tokens[0]:
+                        l.append(str(v))
+                print(l)
+                        
+        
 
 
 if __name__ == '__main__':
