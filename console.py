@@ -4,6 +4,7 @@
 import cmd
 import sys, string
 from models.base_model import BaseModel
+from models import storage
 
 class HBNBCommand(cmd.Cmd):
     """
@@ -50,6 +51,25 @@ class HBNBCommand(cmd.Cmd):
             x = eval(arg)()
             x.save()
             print(x.id)
+
+    def do_show(self, args):
+        tokens = args.split()
+        if len(tokens) == 0:
+            print("** class name missing **")
+        elif (tokens[0] not in storage.class_list()):
+            print("** class doesn't exist **")
+        elif tokens[1] is None:
+            print("** instance id missing **")
+        else:
+            k = tokens[0] + "." + tokens[1]
+            dic = storage.all()
+            try:
+                print(dic[k])
+            except Exception:
+                print("** no instance found **")
+
+
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
