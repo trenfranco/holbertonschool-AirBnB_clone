@@ -26,7 +26,7 @@ class HBNBCommand(cmd.Cmd):
         prompt = "(hbnb) "
 
     else:
-        prompt = "(hbnb) \n" 
+        prompt = "(hbnb) \n"
 
     def precmd(self, args):
         args = args.replace('"', "")
@@ -136,9 +136,24 @@ class HBNBCommand(cmd.Cmd):
             elif len(tokens) == 3:
                 print("** value missing **")
             else:
-                tokens[3].replace('"',"")
+                tokens[3].replace('"', "")
                 setattr(dic[s], tokens[2], tokens[3])
                 storage.save()
+
+	def advanced(self, arg)
+        """Method called when input does not match any do_* commands"""
+        try:
+            args = line.split('.')
+            classs = args[0]
+            command = args[1]
+            if command == 'all()':
+                self.do_all(classs)
+            elif command == 'count()':
+		for instances in storage.all():
+                if instances.split(".")[0] == classs:
+			count += 1
+                print(count)
+		return
 
 
 if __name__ == '__main__':
