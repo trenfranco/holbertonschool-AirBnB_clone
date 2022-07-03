@@ -26,7 +26,7 @@ class HBNBCommand(cmd.Cmd):
         prompt = "(hbnb) "
 
     else:
-        prompt = "(hbnb) \n" 
+        prompt = "(hbnb) \n"
 
     def precmd(self, args):
         args = args.replace('"', "")
@@ -136,7 +136,7 @@ class HBNBCommand(cmd.Cmd):
             elif len(tokens) == 3:
                 print("** value missing **")
             else:
-                tokens[3].replace('"',"")
+                tokens[3].replace('"', "")
                 setattr(dic[s], tokens[2], tokens[3])
                 storage.save()
 
