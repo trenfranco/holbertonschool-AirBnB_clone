@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+
 """
 serializes instances to a JSON file
 and deserializes JSON file to instances
@@ -7,6 +8,7 @@ and deserializes JSON file to instances
 import json
 import os
 from models.base_model import BaseModel
+
 
 class FileStorage:
     """New class"""
@@ -42,7 +44,7 @@ class FileStorage:
             self.__objects = {}
             for key, value in obj.items():
                 classs = value["__class__"]
-                self.__objects[key] = eval(classs)(value)    
+                self.__objects[key] = eval(classs)(value)
 
     @staticmethod
     def class_list():
