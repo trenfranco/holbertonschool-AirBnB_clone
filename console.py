@@ -20,14 +20,11 @@ class HBNBCommand(cmd.Cmd):
     """
     Cmd class
     """
+   if sys.stdin and sys.stdin.isatty():
+        prompt = "(hbnb) "
 
-    def __init__(self):
-        """
-        init
-        """
-
-        cmd.Cmd.__init__(self)
-        self.prompt = "(hbnb) "
+    else:
+        prompt = "(hbnb) \n" 
 
     def do_quit(self, arg):
         """
