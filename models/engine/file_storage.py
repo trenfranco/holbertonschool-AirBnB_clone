@@ -8,12 +8,6 @@ import json
 import os
 from models import BaseModel
 from models import storage
-from models.user import User
-from models.state import State
-from models.city import City
-from models.amenity import Amenity
-from models.place import Place
-from models.review import Review
 
 class FileStorage:
     """New class"""
@@ -47,7 +41,7 @@ class FileStorage:
             with open(self.__file_path, "r") as fil:
                 copy = json.load(fil)
             for key, value in copy.items():
-                self.__objects[key] = BaseModel(**value)
+                self.__objects[key] = eval(value["__class__"])(**value)
 
     @staticmethod
     def class_list():
