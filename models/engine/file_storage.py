@@ -35,12 +35,14 @@ class FileStorage:
             json.dump(copy, fil)
 
     def reload(self):
-        """ deserializes the JSON file"""
-        if os.path.exists(FileStorage.__file_path):
-            with open(self.__file_path, "r") as fil:
-                copy = json.load(fil)
-            for key, value in copy.items():
-                self.__objects[key] = BaseModel(**value)
+        """ deserializes the JSON file to """
+        if os.path.exists(FileStorage.__file_path) is True:
+            with open(FileStorage.__file_path, "r") as f:
+                obj = json.load(f)
+            self.__objects = {}
+            for key, value in obj.items():
+                classs = value["__class__"]
+                self.__objects[key] = eval(classs)(value)    
 
     @staticmethod
     def class_list():
