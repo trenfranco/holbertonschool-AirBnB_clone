@@ -36,13 +36,13 @@ class HBNBCommand(cmd.Cmd):
         """
         quit
         """
-        sys.exit(1)
+        return True
 
     def do_EOF(self, arg):
         """
         eof
         """
-        sys.exit(1)
+        return True
 
     def help_quit(self):
         print("syntax: quit")
