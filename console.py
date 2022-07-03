@@ -6,7 +6,7 @@ program called console.py
 import cmd
 import sys
 import string
-from models import BaseModel
+from models.base_model import BaseModel
 from models import storage
 from models.user import User
 from models.state import State

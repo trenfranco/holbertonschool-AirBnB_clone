@@ -6,8 +6,7 @@ and deserializes JSON file to instances
 
 import json
 import os
-from models import BaseModel
-from models import storage
+from models.base_model import BaseModel
 
 class FileStorage:
     """New class"""
