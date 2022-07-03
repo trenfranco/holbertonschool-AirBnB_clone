@@ -28,6 +28,10 @@ class HBNBCommand(cmd.Cmd):
     else:
         prompt = "(hbnb) \n" 
 
+    def precmd(self, args):
+        args = args.replace('"', "")
+        return (args)
+
     def do_quit(self, arg):
         """
         quit
@@ -132,6 +136,7 @@ class HBNBCommand(cmd.Cmd):
             elif len(tokens) == 3:
                 print("** value missing **")
             else:
+                tokens[3].replace('"',"")
                 setattr(dic[s], tokens[2], tokens[3])
                 storage.save()
 
