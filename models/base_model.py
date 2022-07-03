@@ -5,6 +5,7 @@ import uuid
 import datetime
 import models
 
+
 class BaseModel:
     """Base class"""
     def __init__(self, *args, **kwargs):
@@ -19,11 +20,14 @@ class BaseModel:
             self.created_at = datetime.datetime.now()
             self.updated_at = datetime.datetime.now()
             models.storage.new(self)
+
     def __str__(self):
         return(f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}")
+
     def save(self):
         BaseModel.updated_at = datetime.datetime.now()
         models.storage.save()
+
     def to_dict(self):
         new = {'__class__': __class__.__name__}
         new2 = {**self.__dict__, **new}

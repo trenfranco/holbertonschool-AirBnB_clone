@@ -1,8 +1,11 @@
 #!/usr/bin/python3
-"""program called console.py that contains the entry point of the command interpreter"""
+"""
+program called console.py
+"""
 
 import cmd
-import sys, string
+import sys
+import string
 from models import BaseModel
 from models import storage
 from models.user import User
@@ -11,6 +14,7 @@ from models.city import City
 from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
+
 
 class HBNBCommand(cmd.Cmd):
     """
@@ -24,7 +28,7 @@ class HBNBCommand(cmd.Cmd):
 
         cmd.Cmd.__init__(self)
         self.prompt = "(hbnb) "
-        
+
     def do_quit(self, arg):
         """
         quit
@@ -94,20 +98,20 @@ class HBNBCommand(cmd.Cmd):
         """ Prints all string representation of all instances"""
         tokens = arg.split()
         if len(tokens) == 0:
-            l = list()
+            l2 = list()
             for k, v in storage.all().items():
-                l.append(str(v))
-            print(l)
+                l2.append(str(v))
+            print(l2)
         else:
             if tokens[0] not in storage.class_list():
                 print("** class doesn't exist **")
             else:
-                l = list()
+                l2 = list()
                 for k, v in storage.all().items():
                     if v.__class__.__name__ == tokens[0]:
-                        l.append(str(v))
-                print(l)
-    
+                        l2.append(str(v))
+                print(l2)
+
     def do_update(self, args):
         """ Updates an instance based on the class name and id"""
         tokens = args.split()
@@ -130,8 +134,6 @@ class HBNBCommand(cmd.Cmd):
                 print("** value missing **")
             else:
                 setattr(value, tokens[2], tokens[3])
-                
-        
 
 
 if __name__ == '__main__':

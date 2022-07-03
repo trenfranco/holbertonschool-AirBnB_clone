@@ -1,9 +1,13 @@
 #!/usr/bin/python3
-""" serializes instances to a JSON file and deserializes JSON file to instances"""
+"""
+serializes instances to a JSON file
+and deserializes JSON file to instances
+"""
 
 import json
 import os
 from models.base_model import BaseModel
+
 
 class FileStorage:
     """New class"""
@@ -42,7 +46,8 @@ class FileStorage:
     @staticmethod
     def class_list():
         """list of all classes"""
-        return ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]
+        return ["BaseModel", "User", "State",
+                "City", "Amenity", "Place", "Review"]
 
     def delete(self, key):
         """deletes an instance"""
