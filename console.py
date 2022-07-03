@@ -20,7 +20,7 @@ class HBNBCommand(cmd.Cmd):
     """
     Cmd class
     """
-   if sys.stdin and sys.stdin.isatty():
+    if sys.stdin and sys.stdin.isatty():
         prompt = "(hbnb) "
 
     else:
