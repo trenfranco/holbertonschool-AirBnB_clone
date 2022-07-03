@@ -55,8 +55,10 @@ class HBNBCommand(cmd.Cmd):
         """
         if arg == "":
             print("** class name missing **")
+            return
         elif arg not in storage.class_list():
             print("** class doesn't exist **")
+            return
         else:
             x = eval(arg)()
             x.save()
@@ -66,10 +68,13 @@ class HBNBCommand(cmd.Cmd):
         tokens = args.split()
         if len(tokens) == 0:
             print("** class name missing **")
+            return
         elif (tokens[0] not in storage.class_list()):
             print("** class doesn't exist **")
+            return
         elif len(tokens) == 1:
             print("** instance id missing **")
+            return
         else:
             k = tokens[0] + "." + tokens[1]
             dic = storage.all()
@@ -82,10 +87,13 @@ class HBNBCommand(cmd.Cmd):
         tokens = args.split()
         if len(tokens) == 0:
             print("** class name missing **")
+            return
         elif tokens[0] not in storage.class_list():
             print("** class doesn't exist **")
+            return
         elif tokens[1] is None:
             print("** instance id missing **")
+            return
         else:
             k = tokens[0] + "." + tokens[1]
             dic = storage.all()
@@ -105,6 +113,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             if tokens[0] not in storage.class_list():
                 print("** class doesn't exist **")
+                return
             else:
                 l2 = list()
                 for k, v in storage.all().items():
@@ -117,10 +126,13 @@ class HBNBCommand(cmd.Cmd):
         tokens = args.split()
         if len(tokens) == 0:
             print("** class name missing **")
+            return
         elif tokens[0] not in storage.class_list():
             print("** class doesn't exist **")
+            return
         elif len(tokens) == 1:
             print("** instance id missing **")
+            return
         else:
             s = tokens[0] + "." + tokens[1]
             dic = storage.all()
@@ -130,8 +142,10 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
             if len(tokens) == 2:
                 print("** attribute name missing **")
+                return
             elif value.tokens[2] is None:
                 print("** value missing **")
+                return
             else:
                 setattr(value, tokens[2], tokens[3])
 
