@@ -16,7 +16,6 @@ from models.place import Place
 from models.review import Review
 import json
 import ast
-import re
 
 
 class HBNBCommand(cmd.Cmd):
@@ -34,17 +33,19 @@ class HBNBCommand(cmd.Cmd):
         if args.find(".count()") != -1:
             line = args.split(".")
             args = "count " + line[0]
-        if args.find(".all()") != -1:
+        if args.find(".all(") != -1:
             line = args.split(".")
             args = "all " + line[0]
-        if args.find(".show()") != -1:
+        if args.find(".show(") != -1:
             line = args.split(".")
             a = line[1]
-            regex = r'\((.*)\)'
-            idd = re.match(regex, a).group(1)
+            idd = a.split('(', 1)[1].split(')')[0]
             args = "show " + line[0] + " " + idd
-            print(args)
-
+        if args.find(".destroy(") != -1:
+            line = args.split(".")
+            a = line[1]
+            idd = a.split('(', 1)[1].split(')')[0]
+            args = "destroy " + line[0] + " " + idd
         return (args)
 
     def do_quit(self, arg):
@@ -109,6 +110,7 @@ class HBNBCommand(cmd.Cmd):
             dic = storage.all()
             try:
                 storage.delete(k)
+                storage.save()
             except Exception:
                 print("** no instance found **")
 
