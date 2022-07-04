@@ -41,7 +41,7 @@ class FileStorage:
             self.__objects = {}
             for key, value in obj.items():
                 classs = value["__class__"]
-                self.__objects[key] = eval(classs)(value)
+                self.__objects[key] = eval(o["__class__"])(**value)
 
     @staticmethod
     def class_list():
