@@ -16,7 +16,7 @@ from models.place import Place
 from models.review import Review
 import json
 import ast
-
+import re
 
 class HBNBCommand(cmd.Cmd):
     """
@@ -36,6 +36,14 @@ class HBNBCommand(cmd.Cmd):
         if args.find(".all()") != -1:
             line = args.split(".")
             args = "all " + line[0]
+        if args.find(".show()") != -1:
+            line = args.split(".")
+            a = line[1]
+            regex = r'\((.*)\)'
+            idd = re.match(regex, a).group(1)
+            args = "show " + line[0] + " " + idd
+            print(args)
+
         return (args)
 
     def do_quit(self, arg):
