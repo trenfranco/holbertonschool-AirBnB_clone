@@ -140,26 +140,6 @@ class HBNBCommand(cmd.Cmd):
                 setattr(dic[s], tokens[2], tokens[3])
                 storage.save()
 
-    def advanced(self, arg):
-        """Method called when input does not match any do_* commands"""
-        count = 0
-        try:
-            args = line.split('.')
-            classs = args[0]
-            command = args[1]
-            if command == 'all()':
-                self.do_all(classs)
-                return
-            elif command == 'count()':
-                for instances in storage.all():
-                    if instances.split(".")[0] == classs:
-                        count += 1
-                print(count)
-                return
-            return
-        except Exception:
-            print(f"*** Unknown syntax {arg}")
-
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
