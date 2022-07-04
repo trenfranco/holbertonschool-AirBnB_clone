@@ -18,6 +18,7 @@ import json
 import ast
 import re
 
+
 class HBNBCommand(cmd.Cmd):
     """
     Cmd class
