@@ -33,6 +33,9 @@ class HBNBCommand(cmd.Cmd):
         if args.find(".count()") != -1:
             line = args.split(".")
             args = "count " + line[0]
+        if args.find(".all()") != -1:
+            line = args.split(".")
+            args = "all " + line[0]
         return (args)
 
     def do_quit(self, arg):
