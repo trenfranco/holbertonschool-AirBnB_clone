@@ -10,6 +10,7 @@ import os
 from models.base_model import BaseModel
 
 
+
 class FileStorage:
     """New class"""
 
@@ -41,7 +42,7 @@ class FileStorage:
             self.__objects = {}
             for key, value in obj.items():
                 classs = value["__class__"]
-                self.__objects[key] = eval(o["__class__"])(**value)
+                self.__objects[key] = eval(value["__class__"])(**value)
 
     @staticmethod
     def class_list():
