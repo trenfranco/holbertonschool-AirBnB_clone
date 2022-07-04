@@ -30,6 +30,9 @@ class HBNBCommand(cmd.Cmd):
 
     def precmd(self, args):
         args = args.replace('"', "")
+        if args.find(".count()") != -1:
+            line = args.split(".")
+            args = "count " + line[0]
         return (args)
 
     def do_quit(self, arg):
@@ -139,6 +142,19 @@ class HBNBCommand(cmd.Cmd):
                 tokens[3].replace('"', "")
                 setattr(dic[s], tokens[2], tokens[3])
                 storage.save()
+
+    def do_count(self, args):
+        """count numbers of objects in a class"""
+        tokens = args.split()
+        obj = storage.all()
+        if tokens[0] not in storage.class_list():
+            print("invalid class")
+        else:
+            counter = 0
+            for k, v in obj.items():
+                if v.__class__.__name__ == tokens[0]:
+                    counter += 1
+            print(counter)
 
 
 if __name__ == '__main__':
